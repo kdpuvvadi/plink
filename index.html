@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plink - URL Shortener</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+        }
+        table {
+            width: 80%;
+            margin: 20px auto;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 10px;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background: #333;
+            color: white;
+        }
+        .header h1 {
+            margin: 0;
+        }
+        .btn {
+            padding: 10px 15px;
+            background: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Plink - URL Shortener</h1>
+        <a href="https://github.com/kdpuvvadi/plink" class="btn" target="_blank">Support</a>
+    </div>
+    <h2>Shortened URLs</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Short URL</th>
+                <th>Destination</th>
+                <th>Visit</th>
+            </tr>
+        </thead>
+        <tbody id="urlTable">
+            <!-- Data will be inserted here -->
+        </tbody>
+    </table>
+    <script>
+        fetch("/api/redirects")
+            .then(response => response.json())
+            .then(data => {
+                const tableBody = document.getElementById("urlTable");
+                data.forEach(({ source, destination }) => {
+                    const row = document.createElement("tr");
+                    row.innerHTML = `
+                        <td>${source}</td>
+                        <td>${destination}</td>
+                        <td><a href="${source}" target="_blank" class="btn">Go</a></td>
+                    `;
+                    tableBody.appendChild(row);
+                });
+            })
+            .catch(error => console.error("Error fetching data:", error));
+    </script>
+</body>
+</html>

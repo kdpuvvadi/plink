@@ -1,0 +1,17 @@
+{
+  "name": "plink",
+  "version": "1.0.0",
+  "description": "A simple URL shortener using Vercel redirects",
+  "main": "shorten.js",
+  "scripts": {
+    "add": "node shorten.js add",
+    "delete": "node shorten.js delete",
+    "list": "node shorten.js list"
+  },
+  "dependencies": {
+    "cli-table3": "^0.6.3",
+    "psl": "^1.15.0"
+  },
+  "author": "KD Puvvadi",
+  "license": "MIT"
+}
