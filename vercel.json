@@ -1,11 +1,6 @@
 {
   "redirects": [
     {
-      "source": "/",
-      "destination": "https://puvvadi.net",
-      "permanent": true
-    },
-    {
       "source": "/39d12f7e",
       "destination": "https://puvvadi.net",
       "permanent": true
